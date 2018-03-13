@@ -1,0 +1,44 @@
+.btn-gsignup {
+  display: none;
+}
+
+.input-email.has-errors,
+.input-pass.has-errors,
+.input-fname.has-errors,
+.input-lname.has-errors,
+.input-email.has-fberrors,
+.input-pass.has-fberrors,
+.input-fname.has-fberrors,
+.input-lname.has-fberrors {
+  background-color: pink;
+}
+
+.demo #search_places {
+  height: 100px;
+}
+
+.location {
+  text-align: left;
+  display: block;
+  margin-bottom: 20px;
+  height: 50px;
+}
+
+.avatar-upload {
+  position: relative;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.btn-fileupload {
+  position: absolute;
+  top: 0;
+  height: 150px;
+  width: 150px;
+  opacity: 0;
+}
+
+.btn-fileupload input {
+  width: 150px;
+  height: 150px;
+}

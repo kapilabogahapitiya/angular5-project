@@ -1,0 +1,134 @@
+<!-- <div (click)="clickNewUpdate();" id="post_new_update" class="col-xs-12 col-md-12 div-white-box-shadow color-bg-white padding-15 margin-bottom-30" style="border-radius:12px;"> -->
+<div id="post_new_update" class="col-xs-12 col-md-12 div-white-box-shadow color-bg-white padding-15 margin-bottom-30" style="border-radius:12px;">
+  <div class="col-md-1 col-xs-2 padding-0">
+    <img [src]="userService.user ? userService.user.profilePic : ''" class="border-radius-50-p" width="44px" height="44px" alt="">
+  </div>
+  <div class="col-md-10 col-xs-8 padding-left-0">
+    <!-- <p class="color-gray font-weight-300 margin-top-13 font-px-16 margin-left-12">{{isEditing ? " " : "Post Update"}}</p> -->
+    <p class="post-addtext color-gray font-weight-300 margin-top-13 font-px-16 margin-left-12"><input type="text" placeholder="Write about your post update" (keypress)="isEditing = true;"></p>
+  </div>
+  <div class="col-md-1 col-xs-2 padding-0" style="position: relative;">
+    <div class="btn-fileupload"><input type="file" (change)="fileEvent($event)"></div>
+    <img src="assets/images/icons/Symbol1@2x.png" class="border-radius-50-p pull-right margin-top-6" width="32px" height="32px" alt="">
+  </div>
+  <div [hidden]="!isEditing">
+    <div class="col-xs-12 col-md-12 padding-0 margin-top-20 text-center">    
+      <ngx-carousel *ngIf="medias.length > 0"
+        [inputs]="carouselOne"
+        (carouselLoad)="myfunc($event)">
+          <ngx-item NgxCarouselItem *ngFor="let media of medias; let i = index">
+            <div style="position: relative; height: 350px;">
+              <a href="javascript: void(0);"><i (click)="onCickRemoveImage(i)" class="fa fa-times" aria-hidden="true" style="position: absolute; right: 5px; top: 5px; border: solid 1px rgb(51,51,51); border-radius: 100px; padding: 5px; color: rgb(51,51,51);"></i></a>
+              <img *ngIf="media.mediaType === 'image'" [src]="media.fileName" style="width: 100%;">
+              <video *ngIf="media.mediaType === 'video'" autobuffer autoloop loop controls style="height: 100%; width: 100%;">
+                <source [src]="media.fileName">
+                <param name="autoplay" value="false">
+                <param name="autoStart" value="0">
+              </video>
+            </div>
+          </ngx-item>
+          <button NgxCarouselPrev class='leftRs'><i style="font-size: 30px;" class="fa fa-chevron-circle-left" aria-hidden="true"></i></button>
+          <button NgxCarouselNext class='rightRs'><i style="font-size: 30px;" class="fa fa-chevron-circle-right" aria-hidden="true"></i></button>
+      </ngx-carousel>
+    </div>
+    <div [hidden]="!isAddtags">
+      <div (click)="clickAddTags();" class="col-xs-12 col-md-12 padding-top-15 padding-bottom-10 margin-top-20 bg-silver">
+        <div class="col-md-1 col-xs-2 padding-0">
+          <img src="assets/images/icons/tag@2x.png" class="border-radius-50-p" width="32px" height="32px" alt="">
+        </div>
+        <div class="col-md-11 col-xs-10 padding-0">
+          <p class="color-darkgray font-weight-300 margin-top-6 font-px-14">Tag a service or service provider</p>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-12 padding-top-15 padding-bottom-10">
+        <li id="li_post" onclick="" class="display-inlineBlock padding-top-12 pull-right">
+          <a (click)="onClickPost();" class="text-uppercase margin-top-40 bg-blue color-text-white font-px-14 font-weight-600 padding-6 padding-left-20 padding-right-20" style="border-radius:15px;">Post</a>
+        </li>
+        <li (click)="$event.stopPropagation(); clickCancelUpdate();" id="post_new_update_cancel" class="display-inlineBlock padding-top-12 pull-right margin-right-20">
+          <a class="margin-top-40 font-px-14 font-weight-600 color-darkgray text-uppercase">Cancel</a>
+        </li>
+      </div>
+    </div>
+
+    <div [hidden]="!isPostingWithTags">
+      <div class="col-xs-12 col-md-12 padding-top-13 padding-bottom-10 bg-silver margin-top-20" style="border: 1px solid #e4e4e4; border-bottom: 0px; border-top-right-radius: 6px; border-top-left-radius: 6px;">
+        <div class="col-md-1 col-xs-2 padding-0">
+          <img src="assets/images/icons/tag@2x.png" class="border-radius-50-p" width="32px" height="32px" alt="">
+        </div>
+        <div class="col-md-11 col-xs-10 padding-0">                      
+          <input type="text" class="color-darkgray width-100-p border-none bg-transparent height-30-px" value="John">
+        </div>
+      </div>
+
+      <div [hidden]="isServiceProvider" class="col-xs-12 col-md-12 padding-0 bg-silver tags-wrapper" style="top:100%; z-index:1; border:1px solid #e4e4e4; border-bottom:0px; border-bottom:1px solid #e4e4e4; border-bottom-right-radius:6px; border-bottom-left-radius:6px;">
+        <div *ngFor="let tag of tags" class="col-xs-12 col-md-12 padding-top-13 padding-bottom-10 tag">
+          <div *ngIf="tag._index === 'users'">
+            <div class="col-md-1 col-xs-2 padding-0">
+              <img src="{{ tag._source.profilePic }}" class="border-radius-50-p" width="32px" height="32px" alt="">
+            </div>
+            <div (click)="clickServiceProvider();" class="cursor-pointer col-md-8 col-xs-7 padding-0">
+              <p class="color-darkgray margin-0 font-px-12">{{ tag._source.firstName }} {{ tag._source.lastName }}</p>
+              <p class="color-darkgray margin-0 margin-top-0 font-px-12">Dog Walk, Dog therapy</p>
+            </div>
+            <div (click)="defaultTagOption();" class="col-md-3 col-xs-3 padding-0">
+              <p class="font-px-12 color-gray">
+                <i class="fa fa-map-marker color-gray font-px-14"></i>
+                Chicago, Downtown
+              </p>
+            </div>
+          </div>
+          <div *ngIf="tag._index === 'services'">
+            <div class="col-md-1 col-xs-2 padding-0">
+              <img src="assets/images/update_1.png" class="border-radius-50-p" width="32px" height="32px" alt="">
+            </div>
+            <div (click)="defaultTagOption();" class="cursor-pointer col-md-8 col-xs-7 padding-0">
+              <p class="color-darkgray margin-0 font-px-12">Dog Walk Service  by John Smith</p>
+              <div class="col-xs-12 col-md-12 padding-0 margin-top-3">
+                <p class="display-inlineBlock margin-right-8" style="color:#484848;">
+                  <img src="assets/images/p.png" alt="">
+                  234
+                </p>
+                <p class="display-inlineBlock margin-left-8 margin-right-8" style="color:#484848;">
+                  <i class="fa fa-briefcase color-mediumgray"></i>
+                  234
+                </p>
+                <p class="display-inlineBlock margin-left-8" style="color:#484848;">
+                  <i class="fa fa-star  color-mediumgray"></i>
+                  234
+                </p>
+              </div>
+            </div>
+            <div class="col-md-3 col-xs-3 padding-0">
+              <p class="font-px-12 color-gray">
+                <i class="fa fa-map-marker color-gray font-px-14"></i>
+                Chicago, Downtown
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div [hidden]="!isAddMoreTags" class="col-xs-12 col-md-12 padding-top-15 padding-bottom-10 margin-top-20 bg-silver" style="border-radius:6px;">
+		  <div class="col-md-1 col-xs-2 padding-0">
+		    <img src="assets/images/icons/tag@2x.png" class="border-radius-50-p" width="32px" height="32px" alt="">
+		  </div>
+		  <div class="col-md-10 col-xs-10 padding-0">
+		    <div class="col-xs-6 col-md-4 padding-2 color-bg-white" style="border-radius:15px;">
+		      <div class="col-xs-12 col-md-12 padding-left-5 padding-right-5">
+		        <div class="col-md-2 col-xs-3 padding-0 text-center">
+		          <img src="assets/images/update_2.png" class="border-radius-50-p" width="24px" height="24px" alt="">
+		        </div>
+		        <div class="cursor-pointer col-md-10 col-xs-9 padding-left-5 padding-right-0">
+		          <p class="color-darkgray margin-0 font-em-07">John Smith</p>
+		          <p class="color-darkgray margin-0 margin-top-0 font-em-07">Dog Walk, Dog therapy</p>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="col-md-1 col-xs-2 padding-0">
+		    <img src="assets/images/icons/close.png" class="margin-top-3 cursor-pointer" (click)="cancelAddMoreTags();" alt="">
+		  </div>
+		</div>
+  </div>
+</div>

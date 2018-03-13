@@ -1,0 +1,7 @@
+#li_explore a.active,
+#li_updates a.active {
+  color: #00B4F1 !important;
+  background-color: transparent !important;
+  border-radius: 20px;
+  border: 1px solid #00B4F1 !important;
+}

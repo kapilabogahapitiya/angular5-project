@@ -1,0 +1,63 @@
+.btn-fileupload {
+  width: 32px;
+  position: absolute;
+  top: 7px;
+  right: 0;
+  opacity: 0;
+}    
+
+.btn-fileupload input{
+  width: 30px;
+  height: 30px;
+}
+
+.post-addtext input {
+  border: none;
+  font-size: 16px;
+  line-height: 16px;
+  width: 100%;
+}
+    
+.post-addtext input:focus {
+  outline: none;
+}
+
+.bannerStyle h1 {
+  background-color: #ccc;
+  min-height: 300px;
+  text-align: center;
+  line-height: 300px;
+}
+.leftRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: none;
+  border: none;
+  height: 30px;
+}
+
+.leftRs:focus {
+  outline: none;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  background: none;
+  right: 0;
+  border: none;
+  height: 30px;
+}
+
+.rightRs:focus {
+  outline: none;
+}
+
+.tags-wrapper > .tag:not(:last-child) {
+  border-bottom:1px solid #e4e4e4;
+}

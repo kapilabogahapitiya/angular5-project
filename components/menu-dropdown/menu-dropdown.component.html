@@ -1,0 +1,69 @@
+<div class="col-xs-12 col-md-12 padding-20 padding-top-15 padding-bottom-15">
+  <div id="li_myprofile" onclick="btn_menu_f(this);" class="col-xs-6 col-md-5 padding-0">
+    <div class="col-md-3 col-xs-4 padding-0">
+      <img [src]="userService.user ? userService.user.profilePic : ''" class="border-radius-50-p" width="44px" height="44px" alt="">
+    </div>
+    <div class="col-md-9 col-xs-8 margin-top-2 padding-left-10 cursor-pointer">
+      <p class="color-text-black font-weight-300 font-px-14 display-inlineBlock margin-bottom-0 margin-right-5 cursor-pointer">
+        {{userService.user ? userService.user.firstName + ' ' + userService.user.lastName  : ''}}
+      </p>
+      <p class="color-gray font-weight-300 font-px-12 display-inlineBlock margin-bottom-0 margin-top-0 cursor-pointer">View Profile</p>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 col-md-12 padding-0" style="border-top:1px solid #e4e4e4; border-bottom:1px solid #e4e4e4;">
+  <div class="col-xs-12 col-md-12 padding-0">
+    <div class="col-xs-12 col-md-6 padding-left-30 padding-top-20" style="border-right:1px solid #e4e4e4;">
+      <p class="color-darkgray font-px-14 text-uppercase">Buy</p>
+      <ul class="padding-0">
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Orders (10 Active)</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Custom Offers</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Live Offer Request</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Watching</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Likes</a></li>
+      </ul>
+    </div>
+    <div id="profileMenu_userSetting" class="col-xs-12 col-md-6 padding-left-30 padding-top-20">
+      <p class="color-darkgray font-px-14 text-uppercase">Users setiings</p>
+      <ul class="padding-0">
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Edit Profile</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Edit User Settings</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Notification Settings</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Payment Methods</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-12 padding-0">
+    <div class="col-xs-12 col-md-6 padding-left-30 padding-top-20" style="border-right:1px solid #e4e4e4;">
+      <p class="color-darkgray font-px-14 text-uppercase">Sell</p>
+      <ul class="padding-0 margin-bottom-25">
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Orders (10 Active)</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Become a Seller </a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Offers Sent</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Job Opportunities</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Premium Membership</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Background check</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Business Verification</a></li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Edit Store Locations</a></li>
+      </ul>
+    </div>
+    <div id="profileMenu_general" class="col-xs-12 col-md-6 padding-left-30 padding-top-20">
+      <p class="color-darkgray font-px-14 text-uppercase">General</p>
+      <ul class="padding-0 margin-bottom-25">
+        <li class="padding-top-3 padding-bottom-3">
+          <a class="color-gray" routerLink="/following">Following</a>
+        </li>
+        <li class="padding-top-3 padding-bottom-3">
+          <a class="color-gray" routerLink="/followers">Followers</a>
+        </li>
+        <li class="padding-top-3 padding-bottom-3"><a class="color-gray" href="">Invite Friends</a></li>
+        <li class="padding-top-3 padding-bottom-3">
+          <button (click)="onClickLogout();" type="submit" class="padding-0 text-left pull-left color-gray border-none boxshadow-none">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 col-md-12 padding-top-15 padding-bottom-15">
+  <p class="color-mediumgray font-em-09 margin-0">About. Get the app . Contact . Privacy Policy . Terms of Conditions</p>
+</div>
